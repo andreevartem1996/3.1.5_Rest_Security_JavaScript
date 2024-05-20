@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,13 @@ public class UserController {
 
     private final UserService userService;
     private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserService userService, RoleService roleService) {
+    public UserController(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping(value = "/admin")
@@ -39,7 +42,8 @@ public class UserController {
 
     @PostMapping(value = "/admin")
     public String addNewUser(@ModelAttribute("new_user") User user) {
-        user.setRoles(user.getRoles());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(roleService.getSetOfRoles(user.getRoles()));
         userService.addUser(user);
         return "redirect:/admin";
     }
@@ -59,6 +63,8 @@ public class UserController {
 
     @PostMapping("/admin/update")
     public String updateUserSubmit(@ModelAttribute User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(roleService.getSetOfRoles(user.getRoles()));
         userService.updateUser(user);
         return "redirect:/admin";
     }

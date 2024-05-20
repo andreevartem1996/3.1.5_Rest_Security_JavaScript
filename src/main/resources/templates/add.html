@@ -17,12 +17,13 @@
         <br>
         Password: <input type="text" th:field="*{password}"><br>
         <br>
-        <label th:for="${#ids.next('roles')}">Role:<br/> </label>
-        <input type="checkbox" id="${#ids.next('roles')}"
-               th:each="role : ${roles}"
-               th:text="${role.name}"
-               th:value="${role.id}"
-               th:field="*{roles}">
+        <label>
+            <select size="4" multiple="multiple" name="roles" id="roles">
+                <option disabled>Roles:</option>
+                <option value="ROLE_ADMIN">ADMIN</option>
+                <option selected value="ROLE_USER">USER</option>
+            </select>
+        </label>
         <br/><br/>
         <input type="submit" value="Submit">
         <br>
