@@ -1,19 +1,79 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmls:th="https://www.thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title></title>
 </head>
 <body>
-<div align="center">
-    <h2>User info</h2>
-    <p th:text="${user.id}">VALUE</p>
-    <p th:text="${user.username}">VALUE</p>
-    <p th:text="${user.password}">VALUE</p>
-    <p th:text="${user.age}">VALUE</p>
-    <p th:text="${user.roles}">VALUE</p>
-    <br/>
-    <a href="/logout">Logout</a>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="navbar fixed-top navbar-dark bg-dark">
+            <div class="d-flex justify-content-between">
+                <p class="text-white" th:text="${user.email}">VALUE</p>
+                <p style="color: white;"> &nbsp; with roles: &nbsp;</p>
+                <p class="text-white" th:text="${user.roles}">VALUE</p>
+            </div>
+            <div class="ml-auto">
+                <a class="navbar-brand" href="/logout">Logout</a>
+            </div>
+        </nav>
+        <div class="col-xl-2">
+            <br>
+            <br>
+            <br>
+            <h3><a class="navbar-brand" th:if="${user.username.contains('admin')}"
+                   href="/admin">&nbsp;&nbsp;&nbsp;Admin</a></h3>
+            <nav class="navbar sticky-top navbar-dark bg-primary">
+                <h3><a class="navbar-brand" th:href="@{/admin/show_user(userId=${user.id})}">&nbsp;&nbsp;User</a></h3>
+            </nav>
+        </div>
+        <div class="col-xl-10" style="height: 100vh; background-color: #D3D3D3;">
+            <br>
+            <br>
+            <div>
+                <br>
+                <h3>User information-page</h3>
+                <br>
+                <h4><p> About user </p></h4>
+                <table class="table table-striped" style="background-color: white;">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <td th:text="${user.id}">VALUE</td>
+                    <td th:text="${user.username}">VALUE</td>
+                    <td th:text="${user.lastName}">VALUE</td>
+                    <td th:text="${user.age}">VALUE</td>
+                    <td th:text="${user.email}">VALUE</td>
+                    <td th:text="${user.roles}">VALUE</td>
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+    </div>
 </div>
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -16,14 +16,21 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "firstName")
     private String username;
+
+    @Column(name = "lastName")
+    private String lastName;
 
     @Column(name = "age")
     private int age;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
+
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "users_roles",
@@ -31,25 +38,34 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private List<Role> roles;
 
-    public User(int id, String username, int age, String password, List<Role> roles) {
+    public User(int id, String username, String lastName, int age, String email,
+                String password, List<Role> roles) {
         this.id = id;
         this.username = username;
+        this.lastName = lastName;
         this.age = age;
+        this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
-    public User(int id, String username, int age, String password) {
+    public User(int id, String username, int age, String password, String lastName,
+                String email) {
         this.id = id;
         this.username = username;
         this.age = age;
         this.password = password;
+        this.lastName = lastName;
+        this.email = email;
     }
 
-    public User(String username, int age, String password) {
+    public User(String username, int age, String password, String lastName,
+                String email) {
         this.username = username;
         this.age = age;
         this.password = password;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     public User() {
@@ -122,6 +138,21 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public boolean equals(Object o) {
