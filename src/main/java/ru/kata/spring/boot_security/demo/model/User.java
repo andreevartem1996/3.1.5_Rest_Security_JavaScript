@@ -163,6 +163,11 @@ public class User implements UserDetails {
     }
 
     @Override
+    public String toString() {
+        return username;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(id, username, age, password);
     }

@@ -19,6 +19,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private RoleService roleService;
+
     @Override
     public List<User> getUsersList() {
         return userDao.getUsersList();
@@ -26,6 +29,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void addUser(User user) {
+        user.setRoles(roleService.getSetOfRoles(user.getRoles()));
         userDao.addUser(user);
     }
 
@@ -36,6 +40,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void updateUser(User user) {
+        user.setRoles(roleService.getSetOfRoles(user.getRoles()));
         userDao.updateUser(user);
     }
 

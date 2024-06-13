@@ -15,7 +15,9 @@
             <div class="d-flex justify-content-between">
                 <p class="text-white" th:text="${user.email}">VALUE</p>
                 <p style="color: white;"> &nbsp; with roles: &nbsp;</p>
-                <p class="text-white" th:text="${user.roles}">VALUE</p>
+                <div class="text-white">
+                    <span th:each="role : ${user.roles}" th:text="${#strings.substring(role.name, 5)} + ' '"></span>
+                </div>
             </div>
             <div class="ml-auto">
                 <a class="navbar-brand" href="/logout">Logout</a>
@@ -38,16 +40,19 @@
                 <br>
                 <h3>User information-page</h3>
                 <br>
-                <h4><p> About user </p></h4>
-                <table class="table table-striped" style="background-color: white;">
+                <div class="card">
+                    <div class="card-header" style="background-color: #f0f0f0;">
+                        All users
+                    </div>
+                    <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>Age</th>
-                        <th>Email</th>
-                        <th>Role</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,10 +61,11 @@
                     <td th:text="${user.lastName}">VALUE</td>
                     <td th:text="${user.age}">VALUE</td>
                     <td th:text="${user.email}">VALUE</td>
-                    <td th:text="${user.roles}">VALUE</td>
+                    <td> <span th:each="role : ${user.roles}" th:text="${#strings.substring(role.name, 5)} + ' '"></span></td>
                     </tbody>
                 </table>
                 <br/>
+                </div>
             </div>
         </div>
     </div>

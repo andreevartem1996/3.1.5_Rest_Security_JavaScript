@@ -15,7 +15,9 @@
             <div class="d-flex justify-content-between">
                 <p class="text-white" th:text="${user.email}">VALUE</p>
                 <p style="color: white;"> &nbsp; with roles: &nbsp;</p>
-                <p class="text-white" th:text="${user.roles}">VALUE</p>
+                <div class="text-white">
+                    <span th:each="role : ${user.roles}" th:text="${#strings.substring(role.name, 5)} + ' '"></span>
+                </div>
             </div>
             <div class="ml-auto">
                 <a class="navbar-brand" href="/logout">Logout</a>
@@ -40,34 +42,38 @@
                 <button style="background-color: #D3D3D3; float: left; border: 1px solid #D3D3D3; padding: 5px; width: 120px; height: 60px;">
                     <a class="navbar-brand" href="/admin">Users table</a></button>
                 <button style="background-color: white; border: 1px solid white; padding: 5px; width: 100px; height: 60px;">
-                    <a href="/admin/add">New User</a></button>
+                    <a class="navbar-brand" href="/admin/add">New User</a></button>
                 <br>
-                <h4><p> Add new user </p></h4>
+                <div class="card">
+                    <div class="card-header" style="background-color: #f0f0f0;">
+                        Add new user
+                    </div>
                 <form th:action="@{/admin}" method="post">
+                    <br>
                     <div class="text-center">
                         <h6>First name</h6>
-                        <input type="text" name="username">
+                        <input type="text" name="username" placeholder="First name">
                     </div>
                     <div class="text-center">
                         <h6>Last name</h6>
-                        <input type="text" name="lastName">
+                        <input type="text" name="lastName" placeholder="Last name">
                     </div>
                     <div class="text-center">
                         <h6>Age</h6>
-                        <input type="number" step="1" placeholder="step = 1" name="age">
+                        <input type="number" step="1" name="age" placeholder="Age">
                     </div>
                     <div class="text-center">
                         <h6>Email</h6>
-                        <input type="text" name="email">
+                        <input type="text" name="email" placeholder="Email">
                     </div>
                     <div class="text-center">
                         <h6>Password</h6>
-                        <input type="text" name="password">
+                        <input type="password" name="password" placeholder="Password">
                     </div>
                     <div class="text-center">
                         <h6>Role</h6>
                         <label>
-                            <select size="2" multiple="multiple" name="roles" id="roles">
+                            <select size="2" multiple="multiple" name="roles" id="roles" style="width: 187px; height: 50px;">
                                 <option value="ROLE_ADMIN">ADMIN</option>
                                 <option selected value="ROLE_USER">USER</option>
                             </select>
@@ -79,6 +85,7 @@
                 </form>
                 <br>
                 <br>
+            </div>
             </div>
         </div>
     </div>
