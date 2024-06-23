@@ -1,67 +1,57 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@Transactional
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserDetailsService, UserService {
 
-    @Autowired
-    private UserDao userDao;
+    private final UserRepository userRepository;
+    private final PasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    private RoleService roleService;
+    public UserServiceImpl(UserRepository userRepository, @Lazy PasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
-    @Override
-    public List<User> getUsersList() {
-        return userDao.getUsersList();
+    public User findById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Transactional
+    public void saveUser(User user) {
+//        if (userRepository.findByUsername(user.getUsername()) == null) {
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+//        }
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
     }
 
     @Override
-    public void addUser(User user) {
-        user.setRoles(roleService.getSetOfRoles(user.getRoles()));
-        userDao.addUser(user);
-    }
-
-    @Override
-    public void deleteUser(int id) {
-        userDao.deleteUser(id);
-    }
-
-    @Override
-    public void updateUser(User user) {
-        user.setRoles(roleService.getSetOfRoles(user.getRoles()));
-        userDao.updateUser(user);
-    }
-
-    @Override
-    public User getUserById(int id) {
-        Optional<User> user = userDao.getUserById(id);
-        return user.orElse(new User());
-    }
-
-    @Override
-    public User findByUsername(String username) {
-        Optional<User> user = userDao.findByUsername(username);
-        return user.orElse(new User());
-    }
-
-    @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userDao.findByUsername(username);
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException(String.format("User %s not found", username));
-        }
-        return user.get();
+        return userRepository.findByUsername(username);
     }
+
+    public User findByEmail(String email) {
+        return  userRepository.findByUsername(email);
+    }
+
 }
