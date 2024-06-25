@@ -12,12 +12,13 @@ public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "name")
     private String name;
 
-    public Role() { }
+    public Role() {
+    }
 
     public Role(String name) {
         this.name = name;
@@ -27,11 +28,6 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return name;
     }
-
-//    public String getShortRole() {
-//
-//        return this.name.replaceAll("ROLE_", "");
-//    }
 
     @Override
     public boolean equals(Object o) {

@@ -33,10 +33,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Transactional
     public void saveUser(User user) {
-//        if (userRepository.findByUsername(user.getUsername()) == null) {
-            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            userRepository.save(user);
-//        }
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
 
     @Transactional
@@ -51,7 +49,20 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     public User findByEmail(String email) {
-        return  userRepository.findByUsername(email);
+        return userRepository.findByUsername(email);
     }
 
+    @Override
+    public User updateUser(Long id, User updatedUser) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Пользователь не найден"));
+
+        user.setFirstName(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+        user.setAge(updatedUser.getAge());
+        user.setUsername(updatedUser.getUsername());
+        user.setPassword(updatedUser.getPassword());
+        user.setRoles(updatedUser.getRoles());
+
+        return userRepository.save(user);
+    }
 }

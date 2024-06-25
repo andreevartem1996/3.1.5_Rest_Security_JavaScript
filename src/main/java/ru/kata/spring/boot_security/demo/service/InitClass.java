@@ -19,7 +19,6 @@ public class InitClass {
         this.roleService = roleRepository;
     }
 
-
     @PostConstruct
     public void init() {
         Role roleAdmin = new Role("ROLE_ADMIN");

@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Controller {
 
     @GetMapping("/admin")
-    public String getAdminPage(){
+    public String getAdminPage() {
         return "admin";
     }
 
 
     @GetMapping("/user")
-    public String getUserPage(){
+    public String getUserPage() {
         return "user";
     }
 
     @GetMapping("/")
-    public String indexPage(){
+    public String indexPage() {
         return "redirect:/login";
     }
 }

@@ -1,16 +1,16 @@
-const usersURL = 'http://localhost:8080/api/users/'
-const rolesURL = 'http://localhost:8080/api/roles/'
+const usersURL = 'http://localhost:8080/api/admin/'
+const rolesURL = 'http://localhost:8080/api/admin/roles/'
 
 
-$(async function() {
+$(async function () {
     await allUsers();
     await newUser();
     await deleteUser();
     await editUser();
 });
 
-//ALL USERS
 const table = $('#tbodyAllUserTable');
+
 async function allUsers() {
     table.empty()
     fetch(usersURL)
@@ -39,7 +39,6 @@ async function allUsers() {
         })
 }
 
-//ADD NEW USER
 async function newUser() {
     await fetch(rolesURL)
         .then(res => res.json())
@@ -61,8 +60,8 @@ async function newUser() {
         let newUserRoles = [];
         for (let i = 0; i < form.roles.options.length; i++) {
             if (form.roles.options[i].selected) newUserRoles.push({
-                id : form.roles.options[i].value,
-                name : form.roles.options[i].name
+                id: form.roles.options[i].value,
+                name: form.roles.options[i].name
             })
         }
         fetch(usersURL, {
@@ -87,9 +86,6 @@ async function newUser() {
 
 }
 
-
-// DELETE
-
 $('#delete').on('show.bs.modal', ev => {
     let button = $(ev.relatedTarget);
     let id = button.data('id');
@@ -104,7 +100,6 @@ async function showDeleteModal(id) {
     form.lastName.value = user.lastName;
     form.age.value = user.age;
     form.username.value = user.username;
-
 
     $('#rolesDeleteUser').empty();
 
@@ -127,13 +122,14 @@ async function showDeleteModal(id) {
             })
         });
 }
+
 async function getUser(id) {
     let url = usersURL + id;
     let response = await fetch(url);
     return await response.json();
 }
 
-function deleteUser(){
+function deleteUser() {
     const deleteForm = document.forms["formDeleteUser"];
     deleteForm.addEventListener("submit", ev => {
         ev.preventDefault();
@@ -150,8 +146,6 @@ function deleteUser(){
     })
 }
 
-//EDIT
-
 $('#edit').on('show.bs.modal', ev => {
     let button = $(ev.relatedTarget);
     let id = button.data('id');
@@ -167,8 +161,6 @@ async function showEditModal(id) {
     form.age.value = user.age;
     form.username.value = user.username;
     form.password.value = user.password;
-
-    // $('#rolesEditUser').empty();
 
     await fetch(rolesURL)
         .then(res => res.json())
@@ -197,8 +189,8 @@ function editUser() {
         let editUserRoles = [];
         for (let i = 0; i < editForm.roles.options.length; i++) {
             if (editForm.roles.options[i].selected) editUserRoles.push({
-                id : editForm.roles.options[i].value,
-                name : "ROLE_" + editForm.roles.options[i].text
+                id: editForm.roles.options[i].value,
+                name: "ROLE_" + editForm.roles.options[i].text
             })
         }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Admin panel</title>
@@ -35,7 +35,6 @@
 </header>
 
 
-
 <div class="container-fluid">
     <div class="row">
 
@@ -53,21 +52,18 @@
         <div class="col-10 bg-light">
             <div class="tab-content" style="padding-top: 15px; height: 100vh">
 
-                <!--Панель админа-->
-
                 <div class="tab-pane fade show active" id="adminPanel">
                     <h2>Admin panel</h2>
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" id="allUsersTable" href="#allUsers">Users table</a>
+                            <a class="nav-link active" data-toggle="tab" id="allUsersTable" href="#allUsers">Users
+                                table</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#newUser">New User</a>
                         </li>
                     </ul>
                     <div class="tab-content">
-
-                        <!--Таблица пользователей-->
 
                         <div class="tab-pane fade show active" id="allUsers">
                             <div class="card">
@@ -93,9 +89,6 @@
                             </div>
                         </div>
 
-
-                        <!--Вкладка для нового пользователя-->
-
                         <div class="tab-pane fade" id="newUser">
                             <div class="form-group">
                                 <div class="control-group required">
@@ -105,16 +98,20 @@
                                             <div class="form justify-content-center mx-auto col-5">
                                                 <form id="formNewUser" name="formNewUser">
                                                     <p>
-                                                        <label class="container-fluid" for="newUserName"><strong>Name</strong>
+                                                        <label class="container-fluid"
+                                                               for="newUserName"><strong>Name</strong>
                                                             <input class="form-control" type="text" name="firstName"
-                                                                   id="newUserName" required pattern="^[а-яА-ЯёЁa-zA-Z]+$"
+                                                                   id="newUserName" required
+                                                                   pattern="^[а-яА-ЯёЁa-zA-Z]+$"
                                                                    title="Только латиница и кириллица"/>
                                                         </label>
                                                     </p>
                                                     <p>
-                                                        <label class="container-fluid" for="newUserLastName"><strong>Last name</strong>
+                                                        <label class="container-fluid" for="newUserLastName"><strong>Last
+                                                            name</strong>
                                                             <input class="form-control" type="text" name="lastName"
-                                                                   id="newUserLastName" required pattern="^[а-яА-ЯёЁa-zA-Z]+$"
+                                                                   id="newUserLastName" required
+                                                                   pattern="^[а-яА-ЯёЁa-zA-Z]+$"
                                                                    title="Только латиница и кириллица"/>
                                                         </label>
                                                     </p>
@@ -137,14 +134,15 @@
                                                     <p>
                                                         <label class="container-fluid" for="newUserPassword"><strong>Password</strong>
                                                             <input class="form-control" type="password" name="password"
-                                                                   id="newUserPassword" required pattern="^[a-zA-Z0-9]+$"
+                                                                   id="newUserPassword" required
+                                                                   pattern="^[a-zA-Z0-9]+$"
                                                                    title="Пароль только из латинских букв и цифр"/>
                                                         </label>
                                                     </p>
                                                     <label class="container-fluid"
                                                            for="newUserRoles"><strong>Role</strong>
                                                         <select id="newUserRoles" class="form-control" name="roles"
-                                                                multiple size="2" >
+                                                                multiple size="2">
 
                                                         </select>
                                                     </label>
@@ -160,8 +158,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!--Панель пользователя-->
 
                 <div class="tab-pane fade" id="userPanel">
                     <h2>User information-page</h2>
@@ -190,8 +186,6 @@
     </div>
 </div>
 
-<!--Модальное окно редактирования пользователя-->
-
 <div class="modal fade" id="edit" tabindex="-1" role="dialog"
      aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -213,29 +207,29 @@
                             </p>
                             <p>
                                 <label for="firstNameEditUser"><strong>First name</strong>
-                                    <input class="form-control" type="text" name="firstName" id="firstNameEditUser" />
+                                    <input class="form-control" type="text" name="firstName" id="firstNameEditUser"/>
                                 </label>
                             </p>
                             <p>
                                 <label for="lastNameEditUser"><strong>Last name</strong>
-                                    <input class="form-control" type="text" name="lastName" id="lastNameEditUser" />
+                                    <input class="form-control" type="text" name="lastName" id="lastNameEditUser"/>
                                 </label>
                             </p>
 
                             <p>
                                 <label for="ageEditUser"><strong>Age</strong>
-                                    <input class="form-control" type="number" name="age" id="ageEditUser" />
+                                    <input class="form-control" type="number" name="age" id="ageEditUser"/>
                                 </label>
                             </p>
 
                             <p>
                                 <label for="emailEditUser"><strong>Email</strong>
-                                    <input class="form-control" type="email" name="username" id="emailEditUser" />
+                                    <input class="form-control" type="email" name="username" id="emailEditUser"/>
                                 </label>
                             </p>
                             <p>
                                 <label for="passwordEditUser"><strong>Password</strong>
-                                    <input class="form-control" type="password" name="password" id="passwordEditUser" />
+                                    <input class="form-control" type="password" name="password" id="passwordEditUser"/>
                                 </label>
                             </p>
                             <label class="container-fluid col-6" for="rolesEditUser"><strong>Role</strong>
@@ -246,7 +240,9 @@
                             <h1></h1>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="editFormCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="editFormCloseButton" class="btn btn-secondary"
+                                    data-dismiss="modal">Close
+                            </button>
                             <button type="submit" class="btn btn-primary">Edit</button>
                         </div>
                     </div>
@@ -255,8 +251,6 @@
         </div>
     </div>
 </div>
-
-<!--Модальное окно удаления пользователя-->
 
 <div class="modal fade" id="delete" tabindex="-1" role="dialog"
      aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -279,12 +273,14 @@
                             </p>
                             <p>
                                 <label for="firstNameDeleteUser"><strong>First name</strong>
-                                    <input class="form-control" type="text" name="firstName" id="firstNameDeleteUser" disabled>
+                                    <input class="form-control" type="text" name="firstName" id="firstNameDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <p>
                                 <label for="lastNameDeleteUser"><strong>Last name</strong>
-                                    <input class="form-control" type="text" name="lastName" id="lastNameDeleteUser" disabled>
+                                    <input class="form-control" type="text" name="lastName" id="lastNameDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <p>
@@ -294,18 +290,22 @@
                             </p>
                             <p>
                                 <label for="emailDeleteUser"><strong>Email</strong>
-                                    <input class="form-control" type="email" name="username" id="emailDeleteUser" disabled>
+                                    <input class="form-control" type="email" name="username" id="emailDeleteUser"
+                                           disabled>
                                 </label>
                             </p>
                             <label class="container-fluid col-6" for="rolesDeleteUser"><strong>Role</strong>
-                                <select class="form-control" id="rolesDeleteUser" name="roles" multiple size="2" disabled>
+                                <select class="form-control" id="rolesDeleteUser" name="roles" multiple size="2"
+                                        disabled>
 
                                 </select>
                             </label>
                             <h1></h1>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="deleteFormCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="deleteFormCloseButton" class="btn btn-secondary"
+                                    data-dismiss="modal">Close
+                            </button>
                             <button type="submit" class="btn btn-danger btn btn-primary">Delete</button>
                         </div>
                     </div>
@@ -314,9 +314,6 @@
         </div>
     </div>
 </div>
-
-
-<!-- Отдельные JS для Popper и Bootstrap -->
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -327,8 +324,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
         crossorigin="anonymous"></script>
+<script>
+    if (window.localStorage) {
+        var lastVisitTime = window.localStorage.getItem('last_visit_time');
+        if (lastVisitTime) {
+            alert('Вы обновили страницу, в последний раз страница была загружена: ' + lastVisitTime);
+        }
+        window.localStorage.setItem('last_visit_time', (new Date()).toString());
+    }
+</script>
 
-<!-- JS -->
 <script type="text/javascript" src="admin.js"></script>
 
 <script type="text/javascript" src="user.js"></script>
